@@ -5806,7 +5806,7 @@ const b = {
                              const speed = 50
                              const velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
                              Matter.Body.setVelocity(player, velocity);
-                         } else {
+                         }
 
                         for (let i = 0, len = mob.length; i < len; ++i) {
                             if (mob[i].alive && !mob[i].isBadTarget && Matter.Query.ray(map, m.pos, mob[i].position).length === 0) {
