@@ -1,4 +1,4 @@
-llet bullet = [];
+let bullet = [];
 
 const b = {
     dmgScale: null, //scales all gun damage from momentum, but not raw .dmg //set in levels.setDifficulty
