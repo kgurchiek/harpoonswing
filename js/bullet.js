@@ -5800,8 +5800,7 @@ const b = {
                     } else {
                         
                     //grappling hook, not working really
-                         if (true) { 
-                             if (m.immuneCycle < m.cycle + 60) m.immuneCycle = m.cycle + tech.collisionImmuneCycles; //player is immune to damage for 30 cycles
+                         if (true) {
                              b.harpoon(where, closest.target, m.angle, harpoonSize, false, 15)
                              m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
                              const speed = 50
