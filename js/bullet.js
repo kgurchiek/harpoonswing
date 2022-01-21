@@ -5820,9 +5820,9 @@ const b = {
                                     }
                                 }
                             }
-                        }
-                        b.harpoon(where, closest.target, m.angle, harpoonSize, false, 15)
-                        m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
+                            b.harpoon(where, closest.target, m.angle, harpoonSize, false, 15)
+                            m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
+                         }
                     }
                 } else if (tech.extraHarpoons) {
                     const range = 450 * (tech.isFilament ? 1 + 0.005 * Math.min(110, this.ammo) : 1)
