@@ -5806,15 +5806,16 @@ const b = {
                              const speed = 50
                              const velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
                              Matter.Body.setVelocity(player, velocity);
-                         }
+                         } else {
 
-                        for (let i = 0, len = mob.length; i < len; ++i) {
-                            if (mob[i].alive && !mob[i].isBadTarget && Matter.Query.ray(map, m.pos, mob[i].position).length === 0) {
-                                const dot = Vector.dot(dir, Vector.normalise(Vector.sub(mob[i].position, m.pos))) //the dot product of diff and dir will return how much over lap between the vectors
-                                const dist = Vector.magnitude(Vector.sub(where, mob[i].position))
-                                if (dist < closest.distance && dot > 0.95 && dist * dot * dot * dot * dot > 880) { //target closest mob that player is looking at and isn't too close to target
-                                    closest.distance = dist
-                                    closest.target = mob[i]
+                            for (let i = 0, len = mob.length; i < len; ++i) {
+                                if (mob[i].alive && !mob[i].isBadTarget && Matter.Query.ray(map, m.pos, mob[i].position).length === 0) {
+                                    const dot = Vector.dot(dir, Vector.normalise(Vector.sub(mob[i].position, m.pos))) //the dot product of diff and dir will return how much over lap between the vectors
+                                    const dist = Vector.magnitude(Vector.sub(where, mob[i].position))
+                                    if (dist < closest.distance && dot > 0.95 && dist * dot * dot * dot * dot > 880) { //target closest mob that player is looking at and isn't too close to target
+                                        closest.distance = dist
+                                        closest.target = mob[i]
+                                    }
                                 }
                             }
                         }
