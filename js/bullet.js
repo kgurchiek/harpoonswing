@@ -1366,6 +1366,12 @@ const b = {
             lookFrequency: Math.floor(7 + Math.random() * 3),
             density: tech.harpoonDensity, //0.001 is normal for blocks,  0.005 is normal for harpoon,  0.035 when buffed
             beforeDmg(who) {
+                //grapple here
+                m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
+                const speed = 50
+                const velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
+                Matter.Body.setVelocity(player, velocity);
+                
                 if (tech.isShieldPierce && who.isShielded) { //disable shields
                     who.isShielded = false
                     requestAnimationFrame(() => { who.isShielded = true });
@@ -1518,11 +1524,11 @@ const b = {
                             this.do = () => { this.force.y += this.mass * 0.001; }
                             this.dropCaughtPowerUp()
                         } else { //return to player
-                            //grapple
-                            m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
-                            const speed = 50
-                            const velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
-                            Matter.Body.setVelocity(player, velocity);
+                            //grapple (best so far)
+                            //m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
+                            //const speed = 50
+                            //velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
+                            //Matter.Body.setVelocity(player, velocity);
                             
                             this.do = this.returnToPlayer
                             Matter.Body.setDensity(this, 0.0005); //reduce density on return
