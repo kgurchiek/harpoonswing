@@ -1396,13 +1396,6 @@ const b = {
                 }
             },
             onEnd() {
-                //grapple on end of normal shot
-                //if (m.immuneCycle < m.cycle + 60) m.immuneCycle = m.cycle + tech.collisionImmuneCycles; //player is immune to damage for 30 cycles
-                //b.harpoon(where, closest.target, m.angle, harpoonSize, false, 15)
-                //m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
-                //const speed = 50
-                //const velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
-                //Matter.Body.setVelocity(player, velocity);
                 m.maxEnergy = 100;
                 
                 if (this.caughtPowerUp && !simulation.isChoosing && (this.caughtPowerUp.name !== "heal" || m.health !== m.maxHealth || tech.isOverHeal)) {
@@ -1461,6 +1454,15 @@ const b = {
 
             },
             returnToPlayer() {
+                //grapple
+                
+                if (m.immuneCycle < m.cycle + 60) m.immuneCycle = m.cycle + tech.collisionImmuneCycles; //player is immune to damage for 30 cycles
+                b.harpoon(where, closest.target, m.angle, harpoonSize, false, 15)
+                m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
+                const speed = 50
+                const velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
+                Matter.Body.setVelocity(player, velocity);
+                
                 if (Vector.magnitude(Vector.sub(this.position, m.pos)) < returnRadius) { //near player
                     this.endCycle = 0;
                     if (m.cycle + 25 * b.fireCDscale < m.fireCDcycle) m.fireCDcycle = m.cycle + 35 * b.fireCDscale //lower cd to 25 if it is above 25
