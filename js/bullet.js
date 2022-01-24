@@ -1396,8 +1396,6 @@ const b = {
                 }
             },
             onEnd() {
-                m.maxEnergy = 100;
-                
                 if (this.caughtPowerUp && !simulation.isChoosing && (this.caughtPowerUp.name !== "heal" || m.health !== m.maxHealth || tech.isOverHeal)) {
                     let index = null //find index
                     for (let i = 0, len = powerUp.length; i < len; ++i) {
@@ -1455,6 +1453,8 @@ const b = {
             },
             returnToPlayer() {
                 //grapple
+                
+                m.maxEnergy = 100
                 
                 if (m.immuneCycle < m.cycle + 60) m.immuneCycle = m.cycle + tech.collisionImmuneCycles; //player is immune to damage for 30 cycles
                 b.harpoon(where, closest.target, m.angle, harpoonSize, false, 15)
