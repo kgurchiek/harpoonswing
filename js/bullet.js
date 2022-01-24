@@ -1452,18 +1452,12 @@ const b = {
 
             },
             returnToPlayer() {
-                //grapple
-                
-                
-                
-                
-                
                 if (Vector.magnitude(Vector.sub(this.position, m.pos)) < returnRadius) { //near player
                     //grapple
-                    m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
-                    const speed = 50
-                    const velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
-                    Matter.Body.setVelocity(player, velocity);
+                    //m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
+                    //const speed = 50
+                    //const velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
+                    //Matter.Body.setVelocity(player, velocity);
                     
                     this.endCycle = 0;
                     if (m.cycle + 25 * b.fireCDscale < m.fireCDcycle) m.fireCDcycle = m.cycle + 35 * b.fireCDscale //lower cd to 25 if it is above 25
@@ -1524,6 +1518,12 @@ const b = {
                             this.do = () => { this.force.y += this.mass * 0.001; }
                             this.dropCaughtPowerUp()
                         } else { //return to player
+                            //grapple
+                            m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
+                            const speed = 50
+                            const velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
+                            Matter.Body.setVelocity(player, velocity);
+                            
                             this.do = this.returnToPlayer
                             Matter.Body.setDensity(this, 0.0005); //reduce density on return
                             if (this.angularSpeed < 0.5) this.torque += this.inertia * 0.001 * (Math.random() - 0.5) //(Math.round(Math.random()) ? 1 : -1)
