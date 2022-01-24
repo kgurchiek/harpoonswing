@@ -1459,7 +1459,11 @@ const b = {
                 
                 
                 if (Vector.magnitude(Vector.sub(this.position, m.pos)) < returnRadius) { //near player
-                    m.maxEnergy = 100
+                    //grapple
+                    m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
+                    const speed = 50
+                    const velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
+                    Matter.Body.setVelocity(player, velocity);
                     
                     this.endCycle = 0;
                     if (m.cycle + 25 * b.fireCDscale < m.fireCDcycle) m.fireCDcycle = m.cycle + 35 * b.fireCDscale //lower cd to 25 if it is above 25
