@@ -1454,11 +1454,13 @@ const b = {
             returnToPlayer() {
                 //grapple
                 
-                m.maxEnergy = 100
+                
                 
                 
                 
                 if (Vector.magnitude(Vector.sub(this.position, m.pos)) < returnRadius) { //near player
+                    m.maxEnergy = 100
+                    
                     this.endCycle = 0;
                     if (m.cycle + 25 * b.fireCDscale < m.fireCDcycle) m.fireCDcycle = m.cycle + 35 * b.fireCDscale //lower cd to 25 if it is above 25
                     //recoil on catching
