@@ -1366,7 +1366,7 @@ const b = {
             lookFrequency: Math.floor(7 + Math.random() * 3),
             density: tech.harpoonDensity, //0.001 is normal for blocks,  0.005 is normal for harpoon,  0.035 when buffed
             beforeDmg(who) {
-                //grapple here
+                //grapple enemy
                 m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
                 const speed = 50
                 const velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
@@ -1459,12 +1459,6 @@ const b = {
             },
             returnToPlayer() {
                 if (Vector.magnitude(Vector.sub(this.position, m.pos)) < returnRadius) { //near player
-                    //grapple
-                    //m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
-                    //const speed = 50
-                    //const velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
-                    //Matter.Body.setVelocity(player, velocity);
-                    
                     this.endCycle = 0;
                     if (m.cycle + 25 * b.fireCDscale < m.fireCDcycle) m.fireCDcycle = m.cycle + 35 * b.fireCDscale //lower cd to 25 if it is above 25
                     //recoil on catching
@@ -1515,13 +1509,14 @@ const b = {
             do() {
                 this.cycle++
                 
-                //grapple on map
+                //grapple map
                 let collide = Matter.Query.collides(this, map) //check if collides with map
                 if (collide.length > 0) {
                     const speed = 50
                     const velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
                     Matter.Body.setVelocity(player, velocity);
                     this.ammo++
+                }
                 if (isReturn) {
                     if (this.cycle > totalCycles) {
                         if (m.energy < 0.05) { //snap rope if not enough energy
