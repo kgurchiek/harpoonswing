@@ -1367,6 +1367,7 @@ const b = {
             density: tech.harpoonDensity, //0.001 is normal for blocks,  0.005 is normal for harpoon,  0.035 when buffed
             beforeDmg(who) {
                 //grapple enemy
+                if (m.immuneCycle < m.cycle + 60) m.immuneCycle = m.cycle + tech.collisionImmuneCycles;
                 m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
                 const speed = 50
                 const velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
@@ -1512,6 +1513,7 @@ const b = {
                 //grapple map
                 let collide = Matter.Query.collides(this, map) //check if collides with map
                 if (collide.length > 0) {
+                    if (m.immuneCycle < m.cycle + 60) m.immuneCycle = m.cycle + tech.collisionImmuneCycles;
                     const speed = 50
                     const velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
                     Matter.Body.setVelocity(player, velocity);
