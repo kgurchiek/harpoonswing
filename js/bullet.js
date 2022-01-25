@@ -1529,12 +1529,6 @@ const b = {
                             this.do = () => { this.force.y += this.mass * 0.001; }
                             this.dropCaughtPowerUp()
                         } else { //return to player
-                            //grapple (best so far)
-                            //m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
-                            //const speed = 50
-                            //velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
-                            //Matter.Body.setVelocity(player, velocity);
-                            
                             this.do = this.returnToPlayer
                             Matter.Body.setDensity(this, 0.0005); //reduce density on return
                             if (this.angularSpeed < 0.5) this.torque += this.inertia * 0.001 * (Math.random() - 0.5) //(Math.round(Math.random()) ? 1 : -1)
