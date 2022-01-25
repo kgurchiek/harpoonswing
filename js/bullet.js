@@ -1514,6 +1514,14 @@ const b = {
             },
             do() {
                 this.cycle++
+                
+                //grapple on map
+                let collide = Matter.Query.collides(this, map) //check if collides with map
+                if (collide.length > 0) {
+                    const speed = 50
+                    const velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
+                    Matter.Body.setVelocity(player, velocity);
+                    this.ammo++
                 if (isReturn) {
                     if (this.cycle > totalCycles) {
                         if (m.energy < 0.05) { //snap rope if not enough energy
