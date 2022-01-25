@@ -1,4 +1,7 @@
 let bullet = [];
+const mapGrappleSpeed = 20
+const enemyGrappleSpeed = 20
+const harpoonLungeSpeed = 20
 
 const b = {
     dmgScale: null, //scales all gun damage from momentum, but not raw .dmg //set in levels.setDifficulty
@@ -1369,8 +1372,7 @@ const b = {
                 //grapple enemy
                 if (m.immuneCycle < m.cycle + 60) m.immuneCycle = m.cycle + tech.collisionImmuneCycles;
                 m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
-                const speed = 50
-                const velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
+                const velocity = { x: enemyGrappleSpeed * Math.cos(m.angle), y: enemyGrappleSpeed * Math.sin(m.angle) }
                 Matter.Body.setVelocity(player, velocity);
                 
                 if (tech.isShieldPierce && who.isShielded) { //disable shields
@@ -1515,7 +1517,7 @@ const b = {
                 if (collide.length > 0) {
                     if (m.immuneCycle < m.cycle + 60) m.immuneCycle = m.cycle + tech.collisionImmuneCycles;
                     const speed = 50
-                    const velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
+                    const velocity = { x: mapGrappeSpeed * Math.cos(m.angle), y: mapGrappleSpeed * Math.sin(m.angle) }
                     Matter.Body.setVelocity(player, velocity);
                     this.ammo++
                 }
@@ -5822,7 +5824,7 @@ const b = {
                              b.harpoon(where, closest.target, m.angle, harpoonSize, false, 15)
                              m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
                              const speed = 50
-                             const velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
+                             const velocity = { x: harpoonLungeSpeed * Math.cos(m.angle), y: harpoonLungeSpeed * Math.sin(m.angle) }
                              Matter.Body.setVelocity(player, velocity);
                              this.ammo++
                              
