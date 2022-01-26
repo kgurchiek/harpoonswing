@@ -3,7 +3,6 @@ const mapGrappleSpeed = 40
 const enemyGrappleSpeed = 30
 const harpoonLungeSpeed = 40
 const harpoonLengthIncrease = 3
-const harpoonGrapple = true
 
 const b = {
     dmgScale: null, //scales all gun damage from momentum, but not raw .dmg //set in levels.setDifficulty
@@ -1371,7 +1370,7 @@ const b = {
             lookFrequency: Math.floor(7 + Math.random() * 3),
             density: tech.harpoonDensity, //0.001 is normal for blocks,  0.005 is normal for harpoon,  0.035 when buffed
             beforeDmg(who) {
-                if (harpoonGrapple)
+                if (true) //if player has grapple tech
                 {
                     //grapple enemy
                     if (m.immuneCycle < m.cycle + 60) m.immuneCycle = m.cycle + tech.collisionImmuneCycles;
@@ -1517,7 +1516,7 @@ const b = {
             do() {
                 this.cycle++
                 
-                if (harpoonGrapple)
+                if (true) //if player has grapple tech
                 {
                     //grapple map
                     let collide = Matter.Query.collides(this, map) //check if collides with map
@@ -5827,9 +5826,9 @@ const b = {
                             }
                         }
                     } else {
-                        
-                         //lunge with thrown harpoon (when crouched)
-                         if (true) {
+                         if (true) //if player has grapple tech
+                         {
+                             //lunge with thrown harpoon (when crouched)
                              if (m.immuneCycle < m.cycle + 60) m.immuneCycle = m.cycle + tech.collisionImmuneCycles; //player is immune to damage for 30 cycles
                              b.harpoon(where, closest.target, m.angle, harpoonSize, false, 15)
                              m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
