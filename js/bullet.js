@@ -5599,8 +5599,8 @@ const b = {
                 }
                 //look for closest mob in player's LoS
                 const dir = { x: Math.cos(m.angle), y: Math.sin(m.angle) }; //make a vector for the player's direction of length 1; used in dot product
-                const harpoonSize = tech.isLargeHarpoon ? 3 + 0.1 * Math.sqrt(this.ammo) : 3
-                const totalCycles = 7 * (tech.isFilament ? 1 + 0.01 * Math.min(110, this.ammo) : 1) * Math.sqrt(harpoonSize)
+                const harpoonSize = tech.isLargeHarpoon ? 1 + 0.1 * Math.sqrt(this.ammo) : 1
+                const totalCycles = 7 * (tech.isFilament ? 1 + 0.01 * Math.min(110, this.ammo) : 1) * Math.sqrt(harpoonSize) + 1
                 if (input.down) {
 
                     if (tech.isRailGun) {
@@ -5628,7 +5628,7 @@ const b = {
                         }
 
                         const me = bullet.length;
-                        const size = 3 + tech.isLargeHarpoon * 0.1 * Math.sqrt(this.ammo)
+                        const size = 1 + tech.isLargeHarpoon * 0.1 * Math.sqrt(this.ammo)
                         bullet[me] = Bodies.rectangle(0, 0, 0.015, 0.0015, { //start as a small shape that can't even be seen
                             vertexGoal: [{ x: -40 * size, y: 2 * size, index: 0, isInternal: false }, { x: -40 * size, y: -2 * size, index: 1, isInternal: false }, { x: 50 * size, y: -3 * size, index: 3, isInternal: false }, { x: 30 * size, y: 2 * size, index: 4, isInternal: false }],
                             density: 0.03, //0.001 is normal
