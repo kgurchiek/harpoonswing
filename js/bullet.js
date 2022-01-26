@@ -2,6 +2,7 @@ let bullet = [];
 const mapGrappleSpeed = 40
 const enemyGrappleSpeed = 30
 const harpoonLungeSpeed = 40
+const harpoonLengthIncrease = 3
 
 const b = {
     dmgScale: null, //scales all gun damage from momentum, but not raw .dmg //set in levels.setDifficulty
@@ -5598,7 +5599,7 @@ const b = {
                 //look for closest mob in player's LoS
                 const dir = { x: Math.cos(m.angle), y: Math.sin(m.angle) }; //make a vector for the player's direction of length 1; used in dot product
                 const harpoonSize = tech.isLargeHarpoon ? 1 + 0.1 * Math.sqrt(this.ammo) : 1
-                const totalCycles = 7 * (tech.isFilament ? 1 + 0.01 * Math.min(110, this.ammo) : 1) * Math.sqrt(harpoonSize)
+                const totalCycles = 7 * (tech.isFilament ? 1 + 0.01 * Math.min(110, this.ammo) : 1) * Math.sqrt(harpoonSize) + harpoonLengthIncrease
                 if (input.down) {
 
                     if (tech.isRailGun) {
