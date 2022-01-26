@@ -5628,7 +5628,7 @@ const b = {
                         }
 
                         const me = bullet.length;
-                        const size = 1 + tech.isLargeHarpoon * 0.1 * Math.sqrt(this.ammo)
+                        const size = 3 + tech.isLargeHarpoon * 0.1 * Math.sqrt(this.ammo)
                         bullet[me] = Bodies.rectangle(0, 0, 0.015, 0.0015, { //start as a small shape that can't even be seen
                             vertexGoal: [{ x: -40 * size, y: 2 * size, index: 0, isInternal: false }, { x: -40 * size, y: -2 * size, index: 1, isInternal: false }, { x: 50 * size, y: -3 * size, index: 3, isInternal: false }, { x: 30 * size, y: 2 * size, index: 4, isInternal: false }],
                             density: 0.03, //0.001 is normal
