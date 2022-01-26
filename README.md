@@ -1,3 +1,3 @@
-2-d physics rogue-lite platformer shooter
+n-gon but the harpoon is a grappling hook
 
-https://landgreen.github.io/sidescroller/
+https://kgurchiek.github.io/
