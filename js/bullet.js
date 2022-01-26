@@ -3,6 +3,7 @@ const mapGrappleSpeed = 40
 const enemyGrappleSpeed = 30
 const harpoonLungeSpeed = 40
 const harpoonLengthIncrease = 3
+const harpoonGrapple = true
 
 const b = {
     dmgScale: null, //scales all gun damage from momentum, but not raw .dmg //set in levels.setDifficulty
@@ -1370,11 +1371,14 @@ const b = {
             lookFrequency: Math.floor(7 + Math.random() * 3),
             density: tech.harpoonDensity, //0.001 is normal for blocks,  0.005 is normal for harpoon,  0.035 when buffed
             beforeDmg(who) {
-                //grapple enemy
-                if (m.immuneCycle < m.cycle + 60) m.immuneCycle = m.cycle + tech.collisionImmuneCycles;
-                m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
-                const velocity = { x: enemyGrappleSpeed * Math.cos(m.angle), y: enemyGrappleSpeed * Math.sin(m.angle) }
-                Matter.Body.setVelocity(player, velocity);
+                if (harpoonGrapple)
+                {
+                    //grapple enemy
+                    if (m.immuneCycle < m.cycle + 60) m.immuneCycle = m.cycle + tech.collisionImmuneCycles;
+                    m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
+                    const velocity = { x: enemyGrappleSpeed * Math.cos(m.angle), y: enemyGrappleSpeed * Math.sin(m.angle) }
+                    Matter.Body.setVelocity(player, velocity);
+                }
                 
                 if (tech.isShieldPierce && who.isShielded) { //disable shields
                     who.isShielded = false
@@ -1513,12 +1517,14 @@ const b = {
             do() {
                 this.cycle++
                 
-                //grapple map
-                let collide = Matter.Query.collides(this, map) //check if collides with map
-                if (collide.length > 0) {
-                    const velocity = { x: mapGrappleSpeed * Math.cos(m.angle), y: mapGrappleSpeed * Math.sin(m.angle) }
-                    Matter.Body.setVelocity(player, velocity);
-                    this.ammo++
+                if (harpoonGrapple)
+                {
+                    //grapple map
+                    let collide = Matter.Query.collides(this, map) //check if collides with map
+                    if (collide.length > 0) {
+                        const velocity = { x: mapGrappleSpeed * Math.cos(m.angle), y: mapGrappleSpeed * Math.sin(m.angle) }
+                        Matter.Body.setVelocity(player, velocity);
+                        this.ammo++
                 }
                 if (isReturn) {
                     if (this.cycle > totalCycles) {
@@ -5600,6 +5606,10 @@ const b = {
                 const dir = { x: Math.cos(m.angle), y: Math.sin(m.angle) }; //make a vector for the player's direction of length 1; used in dot product
                 const harpoonSize = tech.isLargeHarpoon ? 1 + 0.1 * Math.sqrt(this.ammo) : 1
                 const totalCycles = 7 * (tech.isFilament ? 1 + 0.01 * Math.min(110, this.ammo) : 1) * Math.sqrt(harpoonSize) + harpoonLengthIncrease
+                if (harpoonGrapple)
+                {
+                    totalCyles += harpoonLengthIncrease
+                }
                 if (input.down) {
 
                     if (tech.isRailGun) {
