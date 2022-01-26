@@ -1516,8 +1516,7 @@ const b = {
                 let collide = Matter.Query.collides(this, map) //check if collides with map
                 if (collide.length > 0) {
                     if (m.immuneCycle < m.cycle + 60) m.immuneCycle = m.cycle + tech.collisionImmuneCycles;
-                    const speed = 50
-                    const velocity = { x: mapGrappeSpeed * Math.cos(m.angle), y: mapGrappleSpeed * Math.sin(m.angle) }
+                    const velocity = { x: mapGrappleSpeed * Math.cos(m.angle), y: mapGrappleSpeed * Math.sin(m.angle) }
                     Matter.Body.setVelocity(player, velocity);
                     this.ammo++
                 }
