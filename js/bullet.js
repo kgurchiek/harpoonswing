@@ -1517,8 +1517,8 @@ const b = {
                     let collide = Matter.Query.collides(this, map) //check if collides with map
                     if (collide.length > 0)
                     {
-                        //swinging = true
-                        //swingStartCycle = this.cycle
+                        swinging = true
+                        swingStartCycle = this.cycle
                         const velocity = { x: mapGrappleSpeed * Math.cos(m.angle), y: mapGrappleSpeed * Math.sin(m.angle) }
                         Matter.Body.setVelocity(player, velocity);
                         this.ammo++
