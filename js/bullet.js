@@ -1,7 +1,7 @@
 let bullet = [];
 const mapGrappleSpeed = 40
 const harpoonLengthIncrease = 15
-const harpoonCooldownCycles = 70
+const harpoonCooldownCycles = 90
 const swingStartX = 0
 const swingStarty = 0
 const swingStartCycle = 0
@@ -1517,8 +1517,8 @@ const b = {
                     let collide = Matter.Query.collides(this, map) //check if collides with map
                     if (collide.length > 0 && swinging == false)
                     {
-                        swinging = true
-                        swingStartCycle = this.cycle
+                        //swinging = true
+                        //swingStartCycle = this.cycle
                         const velocity = { x: mapGrappleSpeed * Math.cos(m.angle), y: mapGrappleSpeed * Math.sin(m.angle) }
                         Matter.Body.setVelocity(player, velocity);
                         this.ammo++
