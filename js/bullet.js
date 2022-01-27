@@ -5,8 +5,8 @@ const harpoonCooldownCycles = 90
 let swingStartX = 0
 let swingStarty = 0
 let swingStartCycle = 0
-let swingMaxCycles = 20
-let swinging = 0
+const swingMaxCycles = 20
+let swinging = false
 
 const b = {
     dmgScale: null, //scales all gun damage from momentum, but not raw .dmg //set in levels.setDifficulty
@@ -1517,16 +1517,20 @@ const b = {
                     let collide = Matter.Query.collides(this, map) //check if collides with map
                     if (collide.length > 0)
                     {
-                        if (swinging == 0)
+                        if (!swinging)
                         {
-                            swinging = 1
+                            swinging = true
                             swingStartCycle = this.cycle
+                            
+                            launch
                             const velocity = { x: mapGrappleSpeed * Math.cos(m.angle), y: mapGrappleSpeed * Math.sin(m.angle) }
                             Matter.Body.setVelocity(player, velocity);
                             this.ammo++
                         }
                     }
                 }
+                
+                //if (swinging)
                 
                 if (isReturn) {
                     if (this.cycle > totalCycles) {
