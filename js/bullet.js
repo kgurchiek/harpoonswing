@@ -1521,10 +1521,10 @@ const b = {
                         {
                             swinging = 1
                             swingStartCycle = this.cycle
+                            const velocity = { x: mapGrappleSpeed * Math.cos(m.angle), y: mapGrappleSpeed * Math.sin(m.angle) }
+                            Matter.Body.setVelocity(player, velocity);
+                            this.ammo++
                         }
-                        const velocity = { x: mapGrappleSpeed * Math.cos(m.angle), y: mapGrappleSpeed * Math.sin(m.angle) }
-                        Matter.Body.setVelocity(player, velocity);
-                        this.ammo++
                     }
                 }
                 
