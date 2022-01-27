@@ -5,7 +5,7 @@ const harpoonCooldownCycles = 90
 let swingStartX = 0
 let swingStarty = 0
 let swingStartCycle = 0
-const swingMaxCycles = 20
+const maxSwingaxCycles = 50
 let swinging = false
 
 const b = {
@@ -1521,16 +1521,30 @@ const b = {
                         {
                             swinging = true
                             swingStartCycle = this.cycle
+                            swingStartX = m.pos.x
+                            swingStartY = m.pos.y
                             
                             //launch
-                            const velocity = { x: mapGrappleSpeed * Math.cos(m.angle), y: mapGrappleSpeed * Math.sin(m.angle) }
-                            Matter.Body.setVelocity(player, velocity);
-                            this.ammo++
+                            //const velocity = { x: mapGrappleSpeed * Math.cos(m.angle), y: mapGrappleSpeed * Math.sin(m.angle) }
+                            //Matter.Body.setVelocity(player, velocity);
+                            //this.ammo++
                         }
                     }
                 }
                 
-                //if (swinging)
+                if (swinging && this.cycle - swingStartCycle < maxSwingCycles)
+                {
+                    m.pos.x = this.cycle - swingStartcycle
+                    m.pos.y = ((this.cycle - swingStartCycle) - 60)^2)/80
+                }
+                
+                if (this.cycle - swingStartCycle = maxSwingCycles && swinging)
+                {
+                    swinging = false
+                    const velocity = { x: mapGrappleSpeed * Math.cos(m.angle), y: mapGrappleSpeed * Math.sin(m.angle) }
+                    Matter.Body.setVelocity(player, velocity);
+                    this.ammo++
+                }
                 
                 if (isReturn) {
                     if (this.cycle > totalCycles) {
