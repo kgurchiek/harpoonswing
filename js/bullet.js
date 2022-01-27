@@ -1,6 +1,7 @@
 let bullet = [];
 const mapGrappleSpeed = 40
 const harpoonLengthIncrease = 15
+const harpoonCooldownCycles = 70
 const swingStartX = 0
 const swingStarty = 0
 const swingStartCycle = 0
@@ -5842,7 +5843,7 @@ const b = {
                             }
                         }
                         b.harpoon(where, closest.target, m.angle, harpoonSize, false, 15)
-                        m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
+                        m.fireCDcycle = m.cycle + harpoonCooldownCycles * b.fireCDscale; // cool down
                     }
                 } else if (tech.extraHarpoons) {
                     const range = 450 * (tech.isFilament ? 1 + 0.005 * Math.min(110, this.ammo) : 1)
@@ -5876,7 +5877,7 @@ const b = {
                     }
                     this.ammo++ //make up for the ammo used up in fire()
                     simulation.updateGunHUD();
-                    m.fireCDcycle = m.cycle + 90 // cool down
+                    m.fireCDcycle = m.cycle + harpoonCooldownCycles // cool down
                 } else {
                     for (let i = 0, len = mob.length; i < len; ++i) {
                         if (mob[i].alive && !mob[i].isBadTarget && Matter.Query.ray(map, m.pos, mob[i].position).length === 0) {
@@ -5889,7 +5890,7 @@ const b = {
                         }
                     }
                     b.harpoon(where, closest.target, m.angle, harpoonSize, true, totalCycles)
-                    m.fireCDcycle = m.cycle + 90 //Infinity; // cool down
+                    m.fireCDcycle = m.cycle + harpoonCooldownCycles //Infinity; // cool down
                 }
                 const recoil = Vector.mult(Vector.normalise(Vector.sub(where, m.pos)), input.down ? 0.015 : 0.035)
                 player.force.x -= recoil.x
