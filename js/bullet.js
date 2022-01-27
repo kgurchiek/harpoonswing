@@ -1515,7 +1515,7 @@ const b = {
                 {
                     //grapple map
                     let collide = Matter.Query.collides(this, map) //check if collides with map
-                    if (collide.length > 0 && !swinging)
+                    if (collide.length > 0 && swinging == false)
                     {
                         swinging = true
                         //swingStartCycle = this.cycle
