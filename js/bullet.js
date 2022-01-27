@@ -1516,7 +1516,7 @@ const b = {
             do() {
                 this.cycle++
                 
-                if (false) //if player has grapple tech
+                if (true) //if player has grapple tech
                 {
                     //grapple map
                     let collide = Matter.Query.collides(this, map) //check if collides with map
