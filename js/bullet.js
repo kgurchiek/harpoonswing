@@ -1,8 +1,4 @@
 let bullet = [];
-const mapGrappleSpeed = 40
-const enemyGrappleSpeed = 30
-const harpoonLungeSpeed = 40
-const harpoonLengthIncrease = 3
 
 const b = {
     dmgScale: null, //scales all gun damage from momentum, but not raw .dmg //set in levels.setDifficulty
@@ -353,7 +349,7 @@ const b = {
         // radius = Math.max(0, Math.min(radius, (distanceToPlayer - 70) / b.explosionRange()))
 
         let dist, sub, knock;
-        let dmg = radius * 0.017 * (tech.isExplosionStun ? 0.7 : 1); //* 0.013 * (tech.isExplosionStun ? 0.7 : 1);
+        let dmg = radius * 0.019 * (tech.isExplosionStun ? 0.7 : 1); //* 0.013 * (tech.isExplosionStun ? 0.7 : 1);
         if (tech.isExplosionHarm) radius *= 1.8 //    1/sqrt(2) radius -> area
         if (tech.isSmallExplosion) {
             color = "rgba(255,0,30,0.7)"
@@ -1370,15 +1366,6 @@ const b = {
             lookFrequency: Math.floor(7 + Math.random() * 3),
             density: tech.harpoonDensity, //0.001 is normal for blocks,  0.005 is normal for harpoon,  0.035 when buffed
             beforeDmg(who) {
-                if (true) //if player has grapple tech
-                {
-                    //grapple enemy
-                    if (m.immuneCycle < m.cycle + 60) m.immuneCycle = m.cycle + tech.collisionImmuneCycles;
-                    m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
-                    const velocity = { x: enemyGrappleSpeed * Math.cos(m.angle), y: enemyGrappleSpeed * Math.sin(m.angle) }
-                    Matter.Body.setVelocity(player, velocity);
-                }
-                
                 if (tech.isShieldPierce && who.isShielded) { //disable shields
                     who.isShielded = false
                     requestAnimationFrame(() => { who.isShielded = true });
@@ -1527,6 +1514,7 @@ const b = {
                         this.ammo++
                     }
                 }
+                
                 if (isReturn) {
                     if (this.cycle > totalCycles) {
                         if (m.energy < 0.05) { //snap rope if not enough energy
@@ -5347,7 +5335,7 @@ const b = {
             do() {}, //do is set in b.setGrenadeMode()
             fire() {
                 const countReduction = Math.pow(0.93, tech.missileCount)
-                m.fireCDcycle = m.cycle + Math.floor((input.down ? 40 : 30) * b.fireCDscale / countReduction); // cool down
+                m.fireCDcycle = m.cycle + Math.floor((input.down ? 35 : 27) * b.fireCDscale / countReduction); // cool down
                 const where = { x: m.pos.x + 30 * Math.cos(m.angle), y: m.pos.y + 30 * Math.sin(m.angle) }
                 const SPREAD = input.down ? 0.12 : 0.2
                 let angle = m.angle - SPREAD * (tech.missileCount - 1) / 2;
@@ -5606,11 +5594,7 @@ const b = {
                 //look for closest mob in player's LoS
                 const dir = { x: Math.cos(m.angle), y: Math.sin(m.angle) }; //make a vector for the player's direction of length 1; used in dot product
                 const harpoonSize = tech.isLargeHarpoon ? 1 + 0.1 * Math.sqrt(this.ammo) : 1
-                const totalCycles = 7 * (tech.isFilament ? 1 + 0.01 * Math.min(110, this.ammo) : 1) * Math.sqrt(harpoonSize) + harpoonLengthIncrease
-                if (harpoonGrapple)
-                {
-                    totalCyles += harpoonLengthIncrease
-                }
+                const totalCycles = 7 * (tech.isFilament ? 1 + 0.01 * Math.min(110, this.ammo) : 1) * Math.sqrt(harpoonSize)
                 if (input.down) {
 
                     if (tech.isRailGun) {
@@ -5827,32 +5811,29 @@ const b = {
                             }
                         }
                     } else {
-                         if (true) //if player has grapple tech
-                         {
-                             //lunge with thrown harpoon (when crouched)
-                             if (m.immuneCycle < m.cycle + 60) m.immuneCycle = m.cycle + tech.collisionImmuneCycles; //player is immune to damage for 30 cycles
-                             b.harpoon(where, closest.target, m.angle, harpoonSize, false, 15)
-                             m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
-                             const speed = 50
-                             const velocity = { x: harpoonLungeSpeed * Math.cos(m.angle), y: harpoonLungeSpeed * Math.sin(m.angle) }
-                             Matter.Body.setVelocity(player, velocity);
-                             this.ammo++
-                             
-                         } else {
 
-                            for (let i = 0, len = mob.length; i < len; ++i) {
-                                if (mob[i].alive && !mob[i].isBadTarget && Matter.Query.ray(map, m.pos, mob[i].position).length === 0) {
-                                    const dot = Vector.dot(dir, Vector.normalise(Vector.sub(mob[i].position, m.pos))) //the dot product of diff and dir will return how much over lap between the vectors
-                                    const dist = Vector.magnitude(Vector.sub(where, mob[i].position))
-                                    if (dist < closest.distance && dot > 0.95 && dist * dot * dot * dot * dot > 880) { //target closest mob that player is looking at and isn't too close to target
-                                        closest.distance = dist
-                                        closest.target = mob[i]
-                                    }
+                        // if (true) { //grappling hook,  not working really
+                        //     if (m.immuneCycle < m.cycle + 60) m.immuneCycle = m.cycle + tech.collisionImmuneCycles; //player is immune to damage for 30 cycles
+                        //     b.harpoon(where, closest.target, m.angle, harpoonSize, false, 15)
+                        //     m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
+                        //     const speed = 50
+                        //     const velocity = { x: speed * Math.cos(m.angle), y: speed * Math.sin(m.angle) }
+                        //     Matter.Body.setVelocity(player, velocity);
+
+                        // } else {
+
+                        for (let i = 0, len = mob.length; i < len; ++i) {
+                            if (mob[i].alive && !mob[i].isBadTarget && Matter.Query.ray(map, m.pos, mob[i].position).length === 0) {
+                                const dot = Vector.dot(dir, Vector.normalise(Vector.sub(mob[i].position, m.pos))) //the dot product of diff and dir will return how much over lap between the vectors
+                                const dist = Vector.magnitude(Vector.sub(where, mob[i].position))
+                                if (dist < closest.distance && dot > 0.95 && dist * dot * dot * dot * dot > 880) { //target closest mob that player is looking at and isn't too close to target
+                                    closest.distance = dist
+                                    closest.target = mob[i]
                                 }
                             }
-                            b.harpoon(where, closest.target, m.angle, harpoonSize, false, 15)
-                            m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
-                         }
+                        }
+                        b.harpoon(where, closest.target, m.angle, harpoonSize, false, 15)
+                        m.fireCDcycle = m.cycle + 50 * b.fireCDscale; // cool down
                     }
                 } else if (tech.extraHarpoons) {
                     const range = 450 * (tech.isFilament ? 1 + 0.005 * Math.min(110, this.ammo) : 1)
