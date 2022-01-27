@@ -1516,11 +1516,12 @@ const b = {
             do() {
                 this.cycle++
                 
-                if (true) //if player has grapple tech
+                if (false) //if player has grapple tech
                 {
                     //grapple map
                     let collide = Matter.Query.collides(this, map) //check if collides with map
-                    if (collide.length > 0) {
+                    if (collide.length > 0)
+                    {
                         const velocity = { x: mapGrappleSpeed * Math.cos(m.angle), y: mapGrappleSpeed * Math.sin(m.angle) }
                         Matter.Body.setVelocity(player, velocity);
                         this.ammo++
