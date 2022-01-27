@@ -1,4 +1,5 @@
 let bullet = [];
+const mapGrappleSpeed = 40
 
 const b = {
     dmgScale: null, //scales all gun damage from momentum, but not raw .dmg //set in levels.setDifficulty
