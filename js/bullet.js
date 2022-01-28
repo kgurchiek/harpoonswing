@@ -1535,9 +1535,9 @@ const b = {
                 if (swinging && this.cycle - swingStartCycle < maxSwingCycles)
                 {
                     m.pos.x = swingStartX + this.cycle - swingStartcycle
-                    m.pos.y = (((this.cycle - swingStartCycle) - 60)^2) / 80
+                    m.pos.y = swingStartY + (((this.cycle - swingStartCycle - 60)*(this.cycle - swingStartCycle - 60)) / 80) //((x-60)^2)/8
                 }
-                
+                /*
                 if (this.cycle - swingStartCycle = maxSwingCycles && swinging)
                 {
                     swinging = false
@@ -1545,7 +1545,7 @@ const b = {
                     Matter.Body.setVelocity(player, velocity);
                     this.ammo++
                 }
-                
+                */
                 if (isReturn) {
                     if (this.cycle > totalCycles) {
                         if (m.energy < 0.05) { //snap rope if not enough energy
