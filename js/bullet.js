@@ -1537,7 +1537,7 @@ const b = {
                     m.pos.x = swingStartX + this.cycle - swingStartcycle
                     m.pos.y = swingStartY + (((this.cycle - swingStartCycle - 60)*(this.cycle - swingStartCycle - 60)) / 80) //((x-60)^2)/8
                 }
-                
+                /*
                 if (this.cycle - swingStartCycle == maxSwingCycles && swinging)
                 {
                     swinging = false
@@ -1545,7 +1545,7 @@ const b = {
                     Matter.Body.setVelocity(player, velocity);
                     this.ammo++
                 }
-                
+                */
                 if (!swinging) {
                 if (isReturn) {
                     if (this.cycle > totalCycles) {
