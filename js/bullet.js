@@ -1531,13 +1531,13 @@ const b = {
                         }
                     }
                 }
-                
+                /*
                 if (swinging && this.cycle - swingStartCycle < maxSwingCycles)
                 {
                     m.pos.x = swingStartX + this.cycle - swingStartcycle
                     m.pos.y = swingStartY + (((this.cycle - swingStartCycle - 60)*(this.cycle - swingStartCycle - 60)) / 80) //((x-60)^2)/8
                 }
-                /*
+                
                 if (this.cycle - swingStartCycle == maxSwingCycles && swinging)
                 {
                     swinging = false
