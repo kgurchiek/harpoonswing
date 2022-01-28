@@ -1546,6 +1546,7 @@ const b = {
                     this.ammo++
                 }
                 */
+                if (!swinging) {
                 if (isReturn) {
                     if (this.cycle > totalCycles) {
                         if (m.energy < 0.05) { //snap rope if not enough energy
@@ -1618,6 +1619,7 @@ const b = {
                 //     }
                 // }
                 this.draw()
+                } //end of if (!swinging)
             },
         });
         if (!isReturn && !target) {
