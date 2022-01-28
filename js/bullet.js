@@ -1537,15 +1537,15 @@ const b = {
                     m.pos.x = swingStartX + this.cycle - swingStartcycle
                     m.pos.y = swingStartY + (((this.cycle - swingStartCycle - 60)*(this.cycle - swingStartCycle - 60)) / 80) //((x-60)^2)/8
                 }
-                /*
-                if (this.cycle - swingStartCycle = maxSwingCycles && swinging)
+                
+                if (this.cycle - swingStartCycle == maxSwingCycles && swinging)
                 {
                     swinging = false
                     const velocity = { x: mapGrappleSpeed * Math.cos(m.angle), y: mapGrappleSpeed * Math.sin(m.angle) }
                     Matter.Body.setVelocity(player, velocity);
                     this.ammo++
                 }
-                */
+                
                 if (!swinging) {
                 if (isReturn) {
                     if (this.cycle > totalCycles) {
