@@ -1546,7 +1546,7 @@ const b = {
                     this.ammo++
                 }
                 */
-                if (!swinging) {
+                if (swinging || !swinging) {
                 if (isReturn) {
                     if (this.cycle > totalCycles) {
                         if (m.energy < 0.05) { //snap rope if not enough energy
