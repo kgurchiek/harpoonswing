@@ -1534,8 +1534,8 @@ const b = {
                 
                 if (swinging && this.cycle - swingStartCycle < maxSwingCycles)
                 {
-                    m.pos.x = this.cycle - swingStartcycle
-                    m.pos.y = ((this.cycle - swingStartCycle) - 60)^2)/80
+                    m.pos.x = swingStartX + this.cycle - swingStartcycle
+                    m.pos.y = (((this.cycle - swingStartCycle) - 60)^2) / 80
                 }
                 
                 if (this.cycle - swingStartCycle = maxSwingCycles && swinging)
