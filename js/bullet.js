@@ -2,7 +2,12 @@ let bullet = [];
 const mapGrappleSpeed = 40
 const harpoonLengthIncrease = 20
 const harpoonCooldownCycles = 90
-const swinging = false
+let swinging = false
+let swingStartX = 0
+let swingStartY = 0
+let swingStartVelocitySlope = 0
+let swingStartCycle = 0
+const swingMaxCycles = 100
 
 const b = {
     dmgScale: null, //scales all gun damage from momentum, but not raw .dmg //set in levels.setDifficulty
@@ -1507,8 +1512,6 @@ const b = {
             do() {
                 this.cycle++
                 
-                m.maxEnergy = player.velocity.y/player.velocity.x
-                
                 if (true) //if player has grapple tech
                 {
                     //grapple map
@@ -1519,8 +1522,16 @@ const b = {
                         //Matter.Body.setVelocity(player, velocity);
                         //simulation.g = 0
                         //this.ammo++
+                        swinging = true
+                        swingStartCycle = this.cycle
                     }
                 }
+                
+                if (this.cycle - swingStartCycle > maxSwingCycles) {
+                    swinging = false
+                }
+                
+                if(swinging == false){
                 
                 if (isReturn) {
                     if (this.cycle > totalCycles) {
@@ -1544,6 +1555,8 @@ const b = {
                     this.frictionAir = 0.003
                     this.do = () => { this.force.y += this.mass * 0.003; }
                 }
+                    
+                } //if(swinging == false)
 
                 if (target) { //rotate towards the target
                     const face = {
