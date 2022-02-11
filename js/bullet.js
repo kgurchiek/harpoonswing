@@ -1512,8 +1512,9 @@ const b = {
                     let collide = Matter.Query.collides(this, map) //check if collides with map
                     if (collide.length > 0)
                     {
-                        const velocity = { x: mapGrappleSpeed * Math.cos(m.angle), y: mapGrappleSpeed * Math.sin(m.angle) }
-                        Matter.Body.setVelocity(player, velocity);
+                        //const velocity = { x: mapGrappleSpeed * Math.cos(m.angle), y: mapGrappleSpeed * Math.sin(m.angle) }
+                        //Matter.Body.setVelocity(player, velocity);
+                        simulation.g = 0
                         this.ammo++
                     }
                 }
