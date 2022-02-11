@@ -1523,13 +1523,13 @@ const b = {
                         //simulation.g = 0
                         //this.ammo++
                         swinging = true
-                        swingStartCycle = this.cycle
+                        //swingStartCycle = this.cycle
                     }
                 }
                 
-                if (this.cycle - swingStartCycle > maxSwingCycles) {
-                    swinging = false
-                }
+                //if (this.cycle - swingStartCycle > maxSwingCycles) {
+                    //swinging = false
+                //}
                 
                 //if(swinging == false){
                 if (true) {
