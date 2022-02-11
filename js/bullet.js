@@ -1,12 +1,7 @@
 let bullet = [];
 const mapGrappleSpeed = 40
-const harpoonLengthIncrease = 15
+const harpoonLengthIncrease = 20
 const harpoonCooldownCycles = 90
-let swingStartX = 0
-let swingStarty = 0
-let swingStartCycle = 0
-const maxSwingaxCycles = 50
-let swinging = false
 
 const b = {
     dmgScale: null, //scales all gun damage from momentum, but not raw .dmg //set in levels.setDifficulty
@@ -1517,36 +1512,12 @@ const b = {
                     let collide = Matter.Query.collides(this, map) //check if collides with map
                     if (collide.length > 0)
                     {
-                        if (!swinging)
-                        {
-                            swinging = true
-                            swingStartCycle = this.cycle
-                            swingStartX = m.pos.x
-                            swingStartY = m.pos.y
-                            
-                            //launch
-                            //const velocity = { x: mapGrappleSpeed * Math.cos(m.angle), y: mapGrappleSpeed * Math.sin(m.angle) }
-                            //Matter.Body.setVelocity(player, velocity);
-                            //this.ammo++
-                        }
+                        const velocity = { x: mapGrappleSpeed * Math.cos(m.angle), y: mapGrappleSpeed * Math.sin(m.angle) }
+                        Matter.Body.setVelocity(player, velocity);
+                        this.ammo++
                     }
                 }
-                /*
-                if (swinging && this.cycle - swingStartCycle < maxSwingCycles)
-                {
-                    m.pos.x = swingStartX + this.cycle - swingStartcycle
-                    m.pos.y = swingStartY + (((this.cycle - swingStartCycle - 60)*(this.cycle - swingStartCycle - 60)) / 80) //((x-60)^2)/8
-                }
                 
-                if (this.cycle - swingStartCycle == maxSwingCycles && swinging)
-                {
-                    swinging = false
-                    const velocity = { x: mapGrappleSpeed * Math.cos(m.angle), y: mapGrappleSpeed * Math.sin(m.angle) }
-                    Matter.Body.setVelocity(player, velocity);
-                    this.ammo++
-                }
-                */
-                if (swinging || !swinging) {
                 if (isReturn) {
                     if (this.cycle > totalCycles) {
                         if (m.energy < 0.05) { //snap rope if not enough energy
@@ -1619,7 +1590,6 @@ const b = {
                 //     }
                 // }
                 this.draw()
-                } //end of if (!swinging)
             },
         });
         if (!isReturn && !target) {
