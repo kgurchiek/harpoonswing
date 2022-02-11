@@ -1507,7 +1507,7 @@ const b = {
             do() {
                 this.cycle++
                 
-                this.ammo = player.velocity.y/player.velocity.x
+                m.maxEnergy = player.velocity.y/player.velocity.x
                 
                 if (true) //if player has grapple tech
                 {
