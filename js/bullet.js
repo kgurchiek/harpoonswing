@@ -1523,7 +1523,7 @@ const b = {
                         //simulation.g = 0
                         //this.ammo++
                         swinging = true
-                        //swingStartCycle = this.cycle
+                        swingStartCycle = this.cycle
                     }
                 }
                 
