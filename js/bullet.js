@@ -2,6 +2,7 @@ let bullet = [];
 const mapGrappleSpeed = 40
 const harpoonLengthIncrease = 20
 const harpoonCooldownCycles = 90
+const swinging = false
 
 const b = {
     dmgScale: null, //scales all gun damage from momentum, but not raw .dmg //set in levels.setDifficulty
@@ -1506,6 +1507,8 @@ const b = {
             do() {
                 this.cycle++
                 
+                this.ammo = player.velocity.y/player.velocity.x
+                
                 if (true) //if player has grapple tech
                 {
                     //grapple map
@@ -1514,8 +1517,8 @@ const b = {
                     {
                         //const velocity = { x: mapGrappleSpeed * Math.cos(m.angle), y: mapGrappleSpeed * Math.sin(m.angle) }
                         //Matter.Body.setVelocity(player, velocity);
-                        simulation.g = 0
-                        this.ammo++
+                        //simulation.g = 0
+                        //this.ammo++
                     }
                 }
                 
