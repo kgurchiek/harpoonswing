@@ -1,3 +1,4 @@
+//hi
 let bullet = [];
 const mapGrappleSpeed = 40
 const harpoonLengthIncrease = 20
