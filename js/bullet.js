@@ -1527,20 +1527,20 @@ const b = {
                         swinging = true
                         swingStartX = m.pos.x
                         swingStartY = m.pos.y
-                        //swingStartCycle = this.cycle
+                        swingStartCycle = this.cycle
                     }
                 }
-                
+                /*
                 if (swinging == true && this.cycle - swingStartCycle > maxSwingCycles) {
-                    //swinging = false
+                    swinging = false
                 }
                 
-                //if(swinging == true){
-                    //m.maxEnergy = 100000
-                //} else {
-                    //m.maxEnergy = 1
-                //}
-                
+                if(swinging == true){
+                    m.maxEnergy = 100000
+                } else {
+                    m.maxEnergy = 1
+                }
+                */
                 if (true) {
                 
                 if (isReturn) {
