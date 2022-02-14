@@ -1524,9 +1524,9 @@ const b = {
                         //Matter.Body.setVelocity(player, velocity);
                         //simulation.g = 0
                         //this.ammo++
-                        //swinging = true
-                        //swingStartX = m.pos.x
-                        //swingStartY = m.pos.y
+                        swinging = true
+                        swingStartX = m.pos.x
+                        swingStartY = m.pos.y
                         //swingStartCycle = this.cycle
                     }
                 }
