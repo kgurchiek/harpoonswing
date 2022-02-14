@@ -8,7 +8,7 @@ let swingStartY = 0
 let harpoonSwingStartX = 0
 let harpoonSwingStartY = 0
 let swingStartVelocitySlope = 0
-let swingStartCycle = 0
+let swingStartCycle = 0.0
 const swingMaxCycles = 100
 
 const b = {
