@@ -1535,8 +1535,8 @@ const b = {
                     swinging = false
                 }
                 
-                //if(swinging == false){
-                if (true) {
+                if(swinging == false){
+                //if (true) {
                 
                 if (isReturn) {
                     if (this.cycle > totalCycles) {
