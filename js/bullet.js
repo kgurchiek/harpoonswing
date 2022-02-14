@@ -1524,10 +1524,10 @@ const b = {
                         //Matter.Body.setVelocity(player, velocity);
                         //simulation.g = 0
                         //this.ammo++
-                        swinging = true
-                        swingStartX = m.pos.x
-                        swingStartY = m.pos.y
-                        swingStartCycle = this.cycle
+                        //swinging = true
+                        //swingStartX = m.pos.x
+                        //swingStartY = m.pos.y
+                        //swingStartCycle = this.cycle
                     }
                 }
                 /*
@@ -1541,7 +1541,7 @@ const b = {
                     m.maxEnergy = 1
                 }
                 */
-                if (true) {
+                //if (true) {
                 
                 if (isReturn) {
                     if (this.cycle > totalCycles) {
@@ -1566,7 +1566,7 @@ const b = {
                     this.do = () => { this.force.y += this.mass * 0.003; }
                 }
                     
-                } //if(swinging == false)
+                //} //if(swinging == false)
 
                 if (target) { //rotate towards the target
                     const face = {
