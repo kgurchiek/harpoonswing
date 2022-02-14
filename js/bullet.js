@@ -5,6 +5,8 @@ const harpoonCooldownCycles = 90
 let swinging = false
 let swingStartX = 0
 let swingStartY = 0
+let harpoonSwingStartX = 0
+let harpoonSwingStartY = 0
 let swingStartVelocitySlope = 0
 let swingStartCycle = 0
 const swingMaxCycles = 100
@@ -1523,6 +1525,8 @@ const b = {
                         //simulation.g = 0
                         //this.ammo++
                         swinging = true
+                        swingStartX = m.pos.x
+                        swingStartY = m.pos.y
                         //swingStartCycle = this.cycle
                     }
                 }
