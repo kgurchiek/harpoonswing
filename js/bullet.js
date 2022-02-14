@@ -1531,7 +1531,7 @@ const b = {
                     }
                 }
                 
-                if (this.cycle - swingStartCycle > maxSwingCycles) {
+                if (swinging == true && this.cycle - swingStartCycle > maxSwingCycles) {
                     swinging = false
                 }
                 
