@@ -1527,7 +1527,7 @@ const b = {
                         swinging = true
                         swingStartX = m.pos.x
                         swingStartY = m.pos.y
-                        //swingStartCycle = this.cycle
+                        swingStartCycle = this.cycle
                     }
                 }
                 /*
