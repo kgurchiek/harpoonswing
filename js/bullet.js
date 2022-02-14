@@ -1535,8 +1535,12 @@ const b = {
                     swinging = false
                 }
                 
-                if(swinging == false){
-                //if (true) {
+                if(swinging == true){
+                    m.maxEnergy = 100000
+                } else {
+                    m.maxEnergy = 1
+                }
+                if (true) {
                 
                 if (isReturn) {
                     if (this.cycle > totalCycles) {
