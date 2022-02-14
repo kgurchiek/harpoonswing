@@ -1534,12 +1534,13 @@ const b = {
                 if (this.cycle - swingStartCycle > maxSwingCycles) {
                     swinging = false
                 }
-                
+                /*
                 if(swinging == true){
                     m.maxEnergy = 100000
                 } else {
                     m.maxEnergy = 1
                 }
+                */
                 if (true) {
                 
                 if (isReturn) {
