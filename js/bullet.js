@@ -1536,7 +1536,7 @@ const b = {
                 //}
                 
                 //if(swinging == false){
-                //if (true) {
+                if (true) {
                 
                 if (isReturn) {
                     if (this.cycle > totalCycles) {
@@ -1561,7 +1561,7 @@ const b = {
                     this.do = () => { this.force.y += this.mass * 0.003; }
                 }
                     
-                //} //if(swinging == false)
+                } //if(swinging == false)
 
                 if (target) { //rotate towards the target
                     const face = {
