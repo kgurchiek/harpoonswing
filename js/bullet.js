@@ -1531,9 +1531,9 @@ const b = {
                     }
                 }
                 
-                //if (this.cycle - swingStartCycle > maxSwingCycles) {
+                if (this.cycle - swingStartCycle > maxSwingCycles) {
                     //swinging = false
-                //}
+                }
                 
                 //if(swinging == false){
                 if (true) {
